@@ -67,11 +67,11 @@ for leg_ite in leg_list:
     gamelog_player_df = gamelog_player.get_data_frames()[0]
     
     if leg_ite[3].lower() == "home":
-        player_stats = gamelog_player_df[gamelog_player_df['MATCHUP'].str.contains('vs', case=False, na=False)][['GAME_DATE', 'MATCHUP', 'PTS']]
+        player_stats = gamelog_player_df[gamelog_player_df['MATCHUP'].str.contains('vs', case=False, na=False)][['GAME_DATE', 'MATCHUP', leg_ite[1]]]
         player_stats_average = player_stats[leg_ite[1]].mean()
         
     if leg_ite[3].lower() == "away":
-        player_stats = gamelog_player_df[gamelog_player_df['MATCHUP'].str.contains('@', case=False, na=False)][['GAME_DATE', 'MATCHUP', 'PTS']]
+        player_stats = gamelog_player_df[gamelog_player_df['MATCHUP'].str.contains('@', case=False, na=False)][['GAME_DATE', 'MATCHUP', leg_ite[1]]]
         player_stats_average = player_stats[leg_ite[1]].mean()
     
     print(player_stats)
