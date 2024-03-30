@@ -80,6 +80,7 @@ for leg_ite in leg_list:
     probability = 1 - poisson.cdf(int(leg_ite[2])-1, player_stats_average)
     print("Probability:", probability)
     
+    print("decimal payout should be: ",round(1/probability,2))
     bet_prob_list.append(probability)
 
 
