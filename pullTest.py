@@ -33,8 +33,8 @@ starters_data = {
     'Player': [
         "Trae Young", "Dejounte Murray", "De'Andre Hunter", "Saddiq Bey", "Clint Capela",
         "Jrue Holiday", "Derrick White", "Jaylen Brown", "Jayson Tatum", "Kristaps Porzingis",
-        "Spencer Dinwiddie", "Cam Thomas", "Mikal Bridges", "Cameron Johnson", "Nicolas Claxton",
-        "LaMelo Ball", "Terry Rozier", "Brandon Miller", "P.J. Washington", "Mark Williams",
+        "Dennis Schroder", "Cam Thomas", "Mikal Bridges", "Cameron Johnson", "Nic Claxton",
+        "Vasilije Micic", "Tre Mann", "Brandon Miller", "Miles Bridges", "Nick Richards",
         "Coby White", "Alex Caruso", "Zach LaVine", "DeMar DeRozan", "Nikola Vucevic",
         "Darius Garland", "Donovan Mitchell", "Max Strus", "Evan Mobley", "Jarrett Allen",
         "Luka Doncic", "Kyrie Irving", "Josh Green", "Grant Williams", "Dereck Lively II",
@@ -44,23 +44,23 @@ starters_data = {
         "Fred VanVleet", "Jalen Green", "Dillon Brooks", "Jabari Smith Jr.", "Alperen Sengün",
         "Tyrese Haliburton", "Bennedict Mathurin", "Bruce Brown", "Obi Toppin", "Myles Turner",
         "Russell Westbrook", "James Harden", "Paul George", "Kawhi Leonard", "Ivica Zubac",
-        "D'Angelo Russell", "Austin Reaves", "Taurean Prince", "LeBron James", "Anthony Davis",
+        "D'Angelo Russell", "Austin Reaves", "Rui Hachimura", "LeBron James", "Anthony Davis",
         "Marcus Smart", "Desmond Bane", "Ziaire Williams", "Jaren Jackson Jr.", "Xavier Tillman Sr.",
-        "Kyle Lowry", "Tyler Herro", "Jimmy Butler", "Caleb Martin", "Bam Adebayo",
+        "Terry Rozier", "Tyler Herro", "Jimmy Butler", "Nikola Jovic", "Bam Adebayo",
         "Damian Lillard", "Malik Beasley", "Khris Middleton", "Giannis Antetokounmpo", "Brook Lopez",
         "Mike Conley", "Anthony Edwards", "Kyle Anderson", "Karl-Anthony Towns", "Rudy Gobert",
         "CJ McCollum", "Herbert Jones", "Brandon Ingram", "Zion Williamson", "Jonas Valanciunas",
         "Jalen Brunson", "Quentin Grimes", "RJ Barrett", "Julius Randle", "Mitchell Robinson",
         "Shai Gilgeous-Alexander", "Josh Giddey", "Jalen Williams", "Kenrich Williams", "Chet Holmgren",
         "Cole Anthony", "Jalen Suggs", "Franz Wagner", "Paolo Banchero", "Wendell Carter Jr.",
-        "Tyrese Maxey", "De'Anthony Melton", "Tobias Harris", "Robert Covington", "Joel Embiid",
+        "Tyrese Maxey", "Kyle Lowry", "Tobias Harris", "Kelly Oubre Jr.", "Mo Bamba",
         "Bradley Beal", "Devin Booker", "Josh Okogie", "Kevin Durant", "Jusuf Nurkic",
         "Scoot Henderson", "Anfernee Simons", "Matisse Thybulle", "Jerami Grant", "Deandre Ayton",
         "De'Aaron Fox", "Kevin Huerter", "Harrison Barnes", "Keegan Murray", "Domantas Sabonis",
         "Jeremy Sochan", "Devin Vassell", "Keldon Johnson", "Victor Wembanyama", "Zach Collins",
-        "Scottie Barnes", "Gary Trent Jr.", "OG Anunoby", "Pascal Siakam", "Jakob Poeltl",
+        "Scottie Barnes", "Gary Trent Jr.", "OG Anunoby", "Gradey Dick", "Kelly Olynyk",
         "Talen Horton-Tucker", "Jordan Clarkson", "Lauri Markkanen", "John Collins", "Walker Kessler",
-        "Tyus Jones", "Jordan Poole", "Deni Avdija", "Kyle Kuzma", "Daniel Gafford"
+        "Tyus Jones", "Jordan Poole", "Deni Avdija", "Kyle Kuzma", "Marvin Bagley III"
     ]
 }
 
@@ -207,11 +207,11 @@ def quickTeamOdds(team,homeOrAway):
                 probs_list.append(round(prob,2))
             
             
-    print(odds_list)
-    print(len(odds_list))
+    #print(odds_list)
+    #print(len(odds_list))
     
-    print(probs_list)
-    print(len(probs_list))
+    #print(probs_list)
+    #print(len(probs_list))
         
     # Reshape the odds_list into a 5x24 DataFrame
     odds_df = pd.DataFrame(np.reshape(odds_list, (5, 23)), columns=bet_kinds)
