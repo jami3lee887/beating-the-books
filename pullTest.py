@@ -17,6 +17,7 @@ import pandas as pd
 
 from nba_api.stats.static import players
 from scipy.stats import poisson
+from scipy.stats import norm
 from nba_api.stats.endpoints import playergamelog
 import numpy as np
 
@@ -31,31 +32,31 @@ starters_data = {
             ["Phoenix Suns"] * 5 + ["Portland Trail Blazers"] * 5 + ["Sacramento Kings"] * 5 + ["San Antonio Spurs"] * 5 +
             ["Toronto Raptors"] * 5 + ["Utah Jazz"] * 5 + ["Washington Wizards"] * 5,
     'Player': [
-        "Trae Young", "Dejounte Murray", "De'Andre Hunter", "Saddiq Bey", "Clint Capela",
+        "Vit Krejci", "Dejounte Murray", "De'Andre Hunter", "Bogdan Bogdanovic", "Clint Capela",
         "Jrue Holiday", "Derrick White", "Jaylen Brown", "Jayson Tatum", "Kristaps Porzingis",
-        "Dennis Schroder", "Cam Thomas", "Mikal Bridges", "Cameron Johnson", "Nic Claxton",
+        "Dennis Schroder", "Cam Thomas", "Mikal Bridges", "Dorian Finney-Smith", "Nic Claxton",
         "Vasilije Micic", "Tre Mann", "Brandon Miller", "Miles Bridges", "Nick Richards",
-        "Coby White", "Alex Caruso", "Zach LaVine", "DeMar DeRozan", "Nikola Vucevic",
+        "Coby White", "Alex Caruso", "Ayo Dosunmu", "DeMar DeRozan", "Nikola Vucevic",
         "Darius Garland", "Donovan Mitchell", "Max Strus", "Evan Mobley", "Jarrett Allen",
-        "Luka Doncic", "Kyrie Irving", "Josh Green", "Grant Williams", "Dereck Lively II",
+        "Luka Doncic", "Kyrie Irving", "Derrick Jones Jr.", "P.J. Washington", "Daniel Gafford",
         "Jamal Murray", "Kentavious Caldwell-Pope", "Michael Porter Jr.", "Aaron Gordon", "Nikola Jokic",
-        "Cade Cunningham", "Jaden Ivey", "Ausar Thompson", "Isaiah Stewart", "Jalen Duren",
-        "Stephen Curry", "Klay Thompson", "Andrew Wiggins", "Draymond Green", "Kevon Looney",
-        "Fred VanVleet", "Jalen Green", "Dillon Brooks", "Jabari Smith Jr.", "Alperen Sengün",
-        "Tyrese Haliburton", "Bennedict Mathurin", "Bruce Brown", "Obi Toppin", "Myles Turner",
+        "Cade Cunningham", "Jaden Ivey", "Jaden Ivey", "Jaden Ivey", "Jalen Duren",
+        "Stephen Curry", "Klay Thompson", "Andrew Wiggins", "Draymond Green", "Jonathan Kuminga",
+        "Fred VanVleet", "Jalen Green", "Dillon Brooks", "Jabari Smith Jr.", "Amen Thompson",
+        "Tyrese Haliburton", "Andrew Nembhard", "Aaron Nesmith", "Pascal Siakam", "Myles Turner",
         "Russell Westbrook", "James Harden", "Paul George", "Kawhi Leonard", "Ivica Zubac",
         "D'Angelo Russell", "Austin Reaves", "Rui Hachimura", "LeBron James", "Anthony Davis",
-        "Marcus Smart", "Desmond Bane", "Ziaire Williams", "Jaren Jackson Jr.", "Xavier Tillman Sr.",
+        "Scotty Pippen Jr.", "Desmond Bane", "Luke Kennard", "Jaren Jackson Jr.", "Santi Aldama",
         "Terry Rozier", "Tyler Herro", "Jimmy Butler", "Nikola Jovic", "Bam Adebayo",
         "Damian Lillard", "Malik Beasley", "Khris Middleton", "Giannis Antetokounmpo", "Brook Lopez",
-        "Mike Conley", "Anthony Edwards", "Kyle Anderson", "Karl-Anthony Towns", "Rudy Gobert",
-        "CJ McCollum", "Herbert Jones", "Brandon Ingram", "Zion Williamson", "Jonas Valanciunas",
+        "Mike Conley", "Anthony Edwards", "Jaden McDaniels", "Naz Reid", "Rudy Gobert",
+        "CJ McCollum", "Herbert Jones", "Trey Murphy III", "Zion Williamson", "Jonas Valanciunas",
         "Jalen Brunson", "Quentin Grimes", "RJ Barrett", "Julius Randle", "Mitchell Robinson",
-        "Shai Gilgeous-Alexander", "Josh Giddey", "Jalen Williams", "Kenrich Williams", "Chet Holmgren",
+        "Shai Gilgeous-Alexander", "Josh Giddey", "Jalen Williams", "Luguentz Dort", "Chet Holmgren",
         "Cole Anthony", "Jalen Suggs", "Franz Wagner", "Paolo Banchero", "Wendell Carter Jr.",
         "Tyrese Maxey", "Kyle Lowry", "Tobias Harris", "Kelly Oubre Jr.", "Mo Bamba",
-        "Bradley Beal", "Devin Booker", "Josh Okogie", "Kevin Durant", "Jusuf Nurkic",
-        "Scoot Henderson", "Anfernee Simons", "Matisse Thybulle", "Jerami Grant", "Deandre Ayton",
+        "Bradley Beal", "Devin Booker", "Grayson Allen", "Kevin Durant", "Jusuf Nurkic",
+        "Scoot Henderson", "Anfernee Simons", "Kris Murray", "Jabari Walker", "Deandre Ayton",
         "De'Aaron Fox", "Kevin Huerter", "Harrison Barnes", "Keegan Murray", "Domantas Sabonis",
         "Jeremy Sochan", "Devin Vassell", "Keldon Johnson", "Victor Wembanyama", "Zach Collins",
         "Scottie Barnes", "Gary Trent Jr.", "OG Anunoby", "Gradey Dick", "Kelly Olynyk",
@@ -163,17 +164,30 @@ def quickTeamOdds(team,homeOrAway):
             
             
         player_avg_pts = round(player_stats["PTS"].mean(),2)
+        player_pts_sd = player_stats["PTS"].std()
         player_avg_FG3M = round(player_stats["FG3M"].mean(),2)
+        player_FG3M_sd = player_stats["FG3M"].std()
         player_avg_REB = round(player_stats["REB"].mean(),2)
+        player_REB_sd = player_stats["REB"].std()
         player_avg_AST = round(player_stats["AST"].mean(),2)
+        player_AST_sd = player_stats["AST"].std()
+        
+        
+        #player_std_pts = player_stats["PTS"].std()
+        #player_std_pts = player_stats["PTS"].std()
+        #player_std_pts = player_stats["PTS"].std()
+        #player_std_pts = player_stats["PTS"].std()
+        
         
         #print(player_avg_pts)
         #print(player_avg_FG3M)
         #print(player_avg_REB)
         #print(player_avg_AST)
         
+        
+        
         for i in [10, 15, 20, 25, 30]:
-            prob = 1 - poisson.cdf(i-1, player_avg_pts)
+            prob = 1 - norm.cdf(i-1, player_avg_pts,player_pts_sd)
             #print(prob)
             if prob < 0.01:
                 odds_list.append("0")
@@ -182,7 +196,7 @@ def quickTeamOdds(team,homeOrAway):
                 odds_list.append(round(1/prob,2))
                 probs_list.append(round(prob,2))
         for i in [1,2,3,4,5]:
-            prob = 1 - poisson.cdf(i-1, player_avg_FG3M)
+            prob = 1 - norm.cdf(i-1, player_avg_FG3M,player_FG3M_sd)
             if prob < 0.01:
                 odds_list.append("0")
                 probs_list.append("0")
@@ -190,7 +204,7 @@ def quickTeamOdds(team,homeOrAway):
                 odds_list.append(round(1/prob,2))
                 probs_list.append(round(prob,2))
         for i in [4,6,8,10,12,14,16]:
-            prob = 1 - poisson.cdf(i-1, player_avg_REB)
+            prob = 1 - norm.cdf(i-1, player_avg_REB,player_REB_sd)
             if prob < 0.01:
                 odds_list.append("0")
                 probs_list.append("0")
@@ -198,7 +212,7 @@ def quickTeamOdds(team,homeOrAway):
                 odds_list.append(round(1/prob,2))
                 probs_list.append(round(prob,2))
         for i in [2,4,6,8,10,12]:
-            prob = 1 - poisson.cdf(i-1, player_avg_AST)
+            prob = 1 - norm.cdf(i-1, player_avg_AST,player_AST_sd)
             if prob < 0.01:
                 odds_list.append("0")
                 probs_list.append("0")
