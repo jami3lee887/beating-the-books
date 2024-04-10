@@ -189,7 +189,7 @@ def quickTeamOdds(team,homeOrAway):
         for i in [10, 15, 20, 25, 30]:
             prob = 1 - norm.cdf(i-1, player_avg_pts,player_pts_sd)
             #print(prob)
-            if prob < 0.01:
+            if prob < 0.05:
                 odds_list.append("0")
                 probs_list.append("0")
             else:
@@ -197,7 +197,7 @@ def quickTeamOdds(team,homeOrAway):
                 probs_list.append(round(prob,2))
         for i in [1,2,3,4,5]:
             prob = 1 - norm.cdf(i-1, player_avg_FG3M,player_FG3M_sd)
-            if prob < 0.01:
+            if prob < 0.05:
                 odds_list.append("0")
                 probs_list.append("0")
             else:
@@ -205,7 +205,7 @@ def quickTeamOdds(team,homeOrAway):
                 probs_list.append(round(prob,2))
         for i in [4,6,8,10,12,14,16]:
             prob = 1 - norm.cdf(i-1, player_avg_REB,player_REB_sd)
-            if prob < 0.01:
+            if prob < 0.05:
                 odds_list.append("0")
                 probs_list.append("0")
             else:
@@ -213,7 +213,7 @@ def quickTeamOdds(team,homeOrAway):
                 probs_list.append(round(prob,2))
         for i in [2,4,6,8,10,12]:
             prob = 1 - norm.cdf(i-1, player_avg_AST,player_AST_sd)
-            if prob < 0.01:
+            if prob < 0.05:
                 odds_list.append("0")
                 probs_list.append("0")
             else:
