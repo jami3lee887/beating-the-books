@@ -14,12 +14,13 @@ Created on Mon Jan 15 23:20:42 2024
 # ------------------------
 
 import pandas as pd
-
+import datetime
 from nba_api.stats.static import players
 from scipy.stats import poisson
 from scipy.stats import norm
 from nba_api.stats.endpoints import playergamelog
 import numpy as np
+
 
 # Your data organized into a dictionary
 starters_data = {
@@ -189,7 +190,7 @@ def quickTeamOdds(team,homeOrAway):
         for i in [10, 15, 20, 25, 30]:
             prob = 1 - norm.cdf(i-1, player_avg_pts,player_pts_sd)
             #print(prob)
-            if prob < 0.05:
+            if prob < 0.1:
                 odds_list.append("0")
                 probs_list.append("0")
             else:
@@ -197,7 +198,7 @@ def quickTeamOdds(team,homeOrAway):
                 probs_list.append(round(prob,2))
         for i in [1,2,3,4,5]:
             prob = 1 - norm.cdf(i-1, player_avg_FG3M,player_FG3M_sd)
-            if prob < 0.05:
+            if prob < 0.1:
                 odds_list.append("0")
                 probs_list.append("0")
             else:
@@ -205,7 +206,7 @@ def quickTeamOdds(team,homeOrAway):
                 probs_list.append(round(prob,2))
         for i in [4,6,8,10,12,14,16]:
             prob = 1 - norm.cdf(i-1, player_avg_REB,player_REB_sd)
-            if prob < 0.05:
+            if prob < 0.1:
                 odds_list.append("0")
                 probs_list.append("0")
             else:
@@ -213,7 +214,7 @@ def quickTeamOdds(team,homeOrAway):
                 probs_list.append(round(prob,2))
         for i in [2,4,6,8,10,12]:
             prob = 1 - norm.cdf(i-1, player_avg_AST,player_AST_sd)
-            if prob < 0.05:
+            if prob < 0.1:
                 odds_list.append("0")
                 probs_list.append("0")
             else:
@@ -233,6 +234,19 @@ def quickTeamOdds(team,homeOrAway):
     print(extended_df)
     extended_df.to_csv("bet_stamps.csv",index=False)
         
+    return extended_df
         
+    
+def gameOdds(game):
+    
+    away_team,home_team = game.split(' @ ')
+    away_df = quickTeamOdds(away_team,"away")
+    home_df = quickTeamOdds(home_team,"home")
+                            
+    game_df = pd.concat([home_df, away_df], ignore_index=True)
+    #print(game_df)
+    
+    game_df.to_csv("compute-odds.csv", index=False)
+
     
     
