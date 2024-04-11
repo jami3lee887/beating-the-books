@@ -33,9 +33,9 @@ starters_data = {
             ["Phoenix Suns"] * 5 + ["Portland Trail Blazers"] * 5 + ["Sacramento Kings"] * 5 + ["San Antonio Spurs"] * 5 +
             ["Toronto Raptors"] * 5 + ["Utah Jazz"] * 5 + ["Washington Wizards"] * 5,
     'Player': [
-        "Vit Krejci", "Dejounte Murray", "De'Andre Hunter", "Bogdan Bogdanovic", "Clint Capela",
+        "Trae Young", "Dejounte Murray", "De'Andre Hunter", "Bogdan Bogdanovic", "Clint Capela",
         "Jrue Holiday", "Derrick White", "Jaylen Brown", "Jayson Tatum", "Kristaps Porzingis",
-        "Dennis Schroder", "Cam Thomas", "Mikal Bridges", "Dorian Finney-Smith", "Nic Claxton",
+        "Dennis Schroder", "Cam Thomas", "Mikal Bridges", "Cameron Johnson", "Nic Claxton",
         "Vasilije Micic", "Tre Mann", "Brandon Miller", "Miles Bridges", "Nick Richards",
         "Coby White", "Alex Caruso", "Ayo Dosunmu", "DeMar DeRozan", "Nikola Vucevic",
         "Darius Garland", "Donovan Mitchell", "Max Strus", "Evan Mobley", "Jarrett Allen",
@@ -59,8 +59,8 @@ starters_data = {
         "Bradley Beal", "Devin Booker", "Grayson Allen", "Kevin Durant", "Jusuf Nurkic",
         "Scoot Henderson", "Anfernee Simons", "Kris Murray", "Jabari Walker", "Deandre Ayton",
         "De'Aaron Fox", "Kevin Huerter", "Harrison Barnes", "Keegan Murray", "Domantas Sabonis",
-        "Jeremy Sochan", "Devin Vassell", "Keldon Johnson", "Victor Wembanyama", "Zach Collins",
-        "Scottie Barnes", "Gary Trent Jr.", "OG Anunoby", "Gradey Dick", "Kelly Olynyk",
+        "Malaki Branham", "Julian Champagnie", "Tre Jones", "Cedi Osman", "Victor Wembanyama",
+        "Immanuel Quickley", "Gary Trent Jr.", "Gradey Dick", "RJ Barrett", "Kelly Olynyk",
         "Talen Horton-Tucker", "Jordan Clarkson", "Lauri Markkanen", "John Collins", "Walker Kessler",
         "Tyus Jones", "Jordan Poole", "Deni Avdija", "Kyle Kuzma", "Marvin Bagley III"
     ]
@@ -198,12 +198,15 @@ def quickTeamOdds(team,homeOrAway):
                 probs_list.append(round(prob,2))
         for i in [1,2,3,4,5]:
             prob = 1 - norm.cdf(i-1, player_avg_FG3M,player_FG3M_sd)
+            #print(prob)
             if prob < 0.1:
                 odds_list.append("0")
                 probs_list.append("0")
+                
             else:
                 odds_list.append(round(1/prob,2))
                 probs_list.append(round(prob,2))
+                #print("through here")
         for i in [4,6,8,10,12,14,16]:
             prob = 1 - norm.cdf(i-1, player_avg_REB,player_REB_sd)
             if prob < 0.1:
@@ -243,10 +246,19 @@ def gameOdds(game):
     away_df = quickTeamOdds(away_team,"away")
     home_df = quickTeamOdds(home_team,"home")
                             
-    game_df = pd.concat([home_df, away_df], ignore_index=True)
+    game_df = pd.concat([away_df, home_df], ignore_index=True)
     #print(game_df)
+    current_date = datetime.datetime.now().strftime("%m-%d-%Y")
+    filename = f"{game}_{current_date}.csv"
     
-    game_df.to_csv("compute-odds.csv", index=False)
+    game_df.to_csv(f"computed_odds/{filename}", index=False)
 
     
+'''
+Notes:
+    
+    - Make all printing to a foldered file
+    - SQL / Lin Reg
+
+'''
     
