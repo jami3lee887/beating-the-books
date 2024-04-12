@@ -41,8 +41,8 @@ starters_data = {
         "Darius Garland", "Donovan Mitchell", "Max Strus", "Evan Mobley", "Jarrett Allen",
         "Luka Doncic", "Kyrie Irving", "Derrick Jones Jr.", "P.J. Washington", "Daniel Gafford",
         "Jamal Murray", "Kentavious Caldwell-Pope", "Michael Porter Jr.", "Aaron Gordon", "Nikola Jokic",
-        "Cade Cunningham", "Jaden Ivey", "Jaden Ivey", "Jaden Ivey", "Jalen Duren",
-        "Stephen Curry", "Klay Thompson", "Andrew Wiggins", "Draymond Green", "Jonathan Kuminga",
+        "Chimezie Metu", "Marcus Sasser", "Troy Brown Jr.", "Jaden Ivey", "Jalen Duren",
+        "Stephen Curry", "Brandin Podziemski", "Andrew Wiggins", "Trayce Jackson-Davis", "Jonathan Kuminga",
         "Fred VanVleet", "Jalen Green", "Dillon Brooks", "Jabari Smith Jr.", "Amen Thompson",
         "Tyrese Haliburton", "Andrew Nembhard", "Aaron Nesmith", "Pascal Siakam", "Myles Turner",
         "Russell Westbrook", "James Harden", "Paul George", "Kawhi Leonard", "Ivica Zubac",
@@ -52,16 +52,16 @@ starters_data = {
         "Damian Lillard", "Malik Beasley", "Khris Middleton", "Giannis Antetokounmpo", "Brook Lopez",
         "Mike Conley", "Anthony Edwards", "Jaden McDaniels", "Naz Reid", "Rudy Gobert",
         "CJ McCollum", "Herbert Jones", "Trey Murphy III", "Zion Williamson", "Jonas Valanciunas",
-        "Jalen Brunson", "Quentin Grimes", "RJ Barrett", "Julius Randle", "Mitchell Robinson",
+        "Donte DiVincenzo", "Josh Hart", "Jalen Brunson", "OG Anunoby", "Isaiah Hartenstein",
         "Shai Gilgeous-Alexander", "Josh Giddey", "Jalen Williams", "Luguentz Dort", "Chet Holmgren",
         "Cole Anthony", "Jalen Suggs", "Franz Wagner", "Paolo Banchero", "Wendell Carter Jr.",
         "Tyrese Maxey", "Kyle Lowry", "Tobias Harris", "Kelly Oubre Jr.", "Mo Bamba",
         "Bradley Beal", "Devin Booker", "Grayson Allen", "Kevin Durant", "Jusuf Nurkic",
-        "Scoot Henderson", "Anfernee Simons", "Kris Murray", "Jabari Walker", "Deandre Ayton",
+        "Scoot Henderson", "Rayan Rupert", "Kris Murray", "Jabari Walker", "Deandre Ayton",
         "De'Aaron Fox", "Kevin Huerter", "Harrison Barnes", "Keegan Murray", "Domantas Sabonis",
         "Malaki Branham", "Julian Champagnie", "Tre Jones", "Cedi Osman", "Victor Wembanyama",
         "Immanuel Quickley", "Gary Trent Jr.", "Gradey Dick", "RJ Barrett", "Kelly Olynyk",
-        "Talen Horton-Tucker", "Jordan Clarkson", "Lauri Markkanen", "John Collins", "Walker Kessler",
+        "Johnny Juzang", "Brice Sensabaugh", "Keyonte George", "Taylor Hendricks", "Omer Yurtseven",
         "Tyus Jones", "Jordan Poole", "Deni Avdija", "Kyle Kuzma", "Marvin Bagley III"
     ]
 }
@@ -257,8 +257,8 @@ def gameOdds(game):
 '''
 Notes:
     
-    - Make all printing to a foldered file
     - SQL / Lin Reg
+    - sqlite the team city, when you pass in the team name
 
 '''
     
