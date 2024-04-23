@@ -46,7 +46,7 @@ starters_data = {
         "Fred VanVleet", "Jalen Green", "Dillon Brooks", "Jabari Smith Jr.", "Amen Thompson",
         "Tyrese Haliburton", "Andrew Nembhard", "Aaron Nesmith", "Pascal Siakam", "Myles Turner",
         "Russell Westbrook", "James Harden", "Paul George", "Kawhi Leonard", "Ivica Zubac",
-        "D'Angelo Russell", "Austin Reaves", "Rui Hachimura", "Taurean Prince", "Anthony Davis",
+        "D'Angelo Russell", "Austin Reaves", "Rui Hachimura", "LeBron James", "Anthony Davis",
         "Scotty Pippen Jr.", "Desmond Bane", "Luke Kennard", "Jaren Jackson Jr.", "Santi Aldama",
         "Terry Rozier", "Tyler Herro", "Haywood Highsmith", "Nikola Jovic", "Jaime Jaquez Jr.",
         "Damian Lillard", "Malik Beasley", "Khris Middleton", "Giannis Antetokounmpo", "Brook Lopez",
@@ -54,7 +54,7 @@ starters_data = {
         "CJ McCollum", "Herbert Jones", "Trey Murphy III", "Brandon Ingram", "Jonas Valanciunas",
         "Donte DiVincenzo", "Josh Hart", "Jalen Brunson", "OG Anunoby", "Isaiah Hartenstein",
         "Shai Gilgeous-Alexander", "Josh Giddey", "Jalen Williams", "Luguentz Dort", "Chet Holmgren",
-        "Cole Anthony", "Jalen Suggs", "Franz Wagner", "Paolo Banchero", "Wendell Carter Jr.",
+        "Cole Anthony", "Jalen Suggs", "Moritz Wagner", "Paolo Banchero", "Wendell Carter Jr.",
         "Tyrese Maxey", "Kyle Lowry", "Tobias Harris", "Kelly Oubre Jr.", "Mo Bamba",
         "Bradley Beal", "Devin Booker", "Grayson Allen", "Kevin Durant", "Jusuf Nurkic",
         "Scoot Henderson", "Rayan Rupert", "Kris Murray", "Jabari Walker", "Deandre Ayton",
@@ -235,7 +235,7 @@ def quickTeamOdds(team,homeOrAway):
     odds_df = pd.DataFrame(np.reshape(odds_list, (5, 23)), columns=bet_kinds)
     extended_df = pd.concat([team_df.reset_index(drop=True), odds_df], axis=1)
     print(extended_df)
-    extended_df.to_csv("bet_stamps.csv",index=False)
+    #extended_df.to_csv("bet_stamps.csv",index=False)
         
     return extended_df
         
