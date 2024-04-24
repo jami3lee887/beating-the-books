@@ -72,11 +72,11 @@ extended_df = pd.DataFrame(starters_data)
 
 
 # ------- for finding info tags
-#player_dict = players.get_players()
-#player = [player for player in player_dict if player['full_name'].lower() == "trae young"][0]
-#player_id = player['id']
-#gamelog_player = playergamelog.PlayerGameLog(player_id=player_id, season = '2023')
-#gamelog_player_df = gamelog_player.get_data_frames()[0]
+player_dict = players.get_players()
+player = [player for player in player_dict if player['full_name'].lower() == "bam adebayo"][0]
+player_id = player['id']
+gamelog_player = playergamelog.PlayerGameLog(player_id=player_id, season = '2023')
+gamelog_player_df = gamelog_player.get_data_frames()[0]
 
 def boostedparlay():
     # Step 1: Initialize the main list
