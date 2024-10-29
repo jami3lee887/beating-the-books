@@ -75,7 +75,7 @@ extended_df = pd.DataFrame(starters_data)
 player_dict = players.get_players()
 player = [player for player in player_dict if player['full_name'].lower() == "bam adebayo"][0]
 player_id = player['id']
-gamelog_player = playergamelog.PlayerGameLog(player_id=player_id, season = '2023')
+gamelog_player = playergamelog.PlayerGameLog(player_id=player_id, season = '2024')
 gamelog_player_df = gamelog_player.get_data_frames()[0]
 
 def boostedparlay():
@@ -114,7 +114,7 @@ def boostedparlay():
 
         #from nba_api.stats.library.parameters import SeasonAll
         
-        gamelog_player = playergamelog.PlayerGameLog(player_id=player_id, season = '2023')
+        gamelog_player = playergamelog.PlayerGameLog(player_id=player_id, season = '2024')
         gamelog_player_df = gamelog_player.get_data_frames()[0]
         
         if leg_ite[3].lower() == "home":
@@ -251,7 +251,7 @@ def gameOdds(game):
     current_date = datetime.datetime.now().strftime("%m-%d-%Y")
     filename = f"{game}_{current_date}.csv"
     
-    game_df.to_csv(f"computed_odds/{filename}", index=False)
+    game_df.to_csv(f"computed_odds_2023/{filename}", index=False)
 
     
 '''
