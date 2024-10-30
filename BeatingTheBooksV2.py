@@ -79,18 +79,16 @@ extended_df = pd.DataFrame(starters_data)
 # gamelog_player_df = gamelog_player.get_data_frames()[0]
 
 
-def quickTeamOdds(team,homeOrAway):
+def quickTeamOdds(team,homeOrAway,dataThing):
     team_df = teams_n_players[teams_n_players['Team'] == team]
     
     odds_list = []
     probs_list = []
-    bet_kinds = ["10+ PTS", "19+ PTS", "20+ PTS", "29+ PTS", "30+ PTS", "1+ 3's", "2+ 3's", "3+ 3's", "4+ 3's", "9+ 3's", 
-                 "4+ Rebs", "6+ Rebs", "8+ Rebs", "10+ Rebs", "12+ Rebs", "14+ Rebs", "16+ Rebs",
-                 "2+ ASTs", "4+ ASTs", "6+ ASTs", "8+ ASTs", "10+ ASTs", "12+ ASTs",]
+    bet_kinds = ["4+ Rebs", "6+ Rebs"]
     
     
     #list of all players
-    player_dict = players.get_players()
+    player_dict = dataThing
     
     for i in team_df['Player']:
         
@@ -102,8 +100,10 @@ def quickTeamOdds(team,homeOrAway):
         gamelog_player_df = gamelog_player.get_data_frames()[0]
         
         # SOME PLAYER SD'S are still 0. (identical values across all games). so, for the next while, we use last year SD
-        gamelog_player_2023 = playergamelog.PlayerGameLog(player_id=player_id, season = '2023')
-        gamelog_player_df_2023 = gamelog_player_2023.get_data_frames()[0]
+        
+        # EDIT, NOW GOING BACK TO 2024 DATA
+        # gamelog_player_2023 = playergamelog.PlayerGameLog(player_id=player_id, season = '2023')
+        # gamelog_player_df_2023 = gamelog_player_2023.get_data_frames()[0]
 
         # TEMPORARILY NOT DOING TO GATHER DATA        
         # if homeOrAway.lower() == "home":
@@ -111,57 +111,19 @@ def quickTeamOdds(team,homeOrAway):
         
         # if homeOrAway.lower() == "away":
         #     player_stats = gamelog_player_df[gamelog_player_df['MATCHUP'].str.contains('@', case=False, na=False)]
-        player_stats = gamelog_player_df
-        player_stats_old = gamelog_player_df_2023
         
-        player_avg_pts = round(player_stats["PTS"].mean(),2)
-        player_pts_sd = player_stats["PTS"].std()
-        player_avg_FG3M = round(player_stats["FG3M"].mean(),2)
-        player_FG3M_sd = player_stats["FG3M"].std()
+        player_stats = gamelog_player_df
+        #player_stats_old = gamelog_player_df_2023
+        
+
         player_avg_REB = round(player_stats["REB"].mean(),2)
         player_REB_sd = player_stats["REB"].std()
         #### SD correction if 0
-        if player_REB_sd == 0:
-            player_REB_sd = player_stats_old["REB"].std()
-        ####
-        player_avg_AST = round(player_stats["AST"].mean(),2)
-        player_AST_sd = player_stats["AST"].std()
-        
-        #player_std_pts = player_stats["PTS"].std()
-        #player_std_pts = player_stats["PTS"].std()
-        #player_std_pts = player_stats["PTS"].std()
-        #player_std_pts = player_stats["PTS"].std()
-        
-        
-        #print(player_avg_pts)
-        #print(player_avg_FG3M)
-        #print(player_avg_REB)
-        #print(player_avg_AST)
-        
-        
-        
-        for i in [10, 19, 20, 29, 30]:
-            prob = 1 - norm.cdf(i-1, player_avg_pts,player_pts_sd)
-            #print(prob)
-            if prob < 0.1:
-                odds_list.append("0")
-                probs_list.append("0")
-            else:
-                odds_list.append(round(1/prob,2))
-                probs_list.append(round(prob,2))
-        
-        for i in [1,2,3,4,9]:
-            prob = 1 - norm.cdf(i-1, player_avg_FG3M,player_FG3M_sd)
-            #print(prob)
-            if prob < 0.1:
-                odds_list.append("0")
-                probs_list.append("0")
-                
-            else:
-                odds_list.append(round(1/prob,2))
-                probs_list.append(round(prob,2))
-                #print("through here")
-        for i in [4,6,8,10,12,14,16]:
+        # if player_REB_sd == 0:
+        #     player_REB_sd = player_stats_old["REB"].std()
+        # ####
+
+        for i in [4,6]:
             prob = 1 - norm.cdf(i-1, player_avg_REB,player_REB_sd)
             if prob < 0.1:
                 odds_list.append("0")
@@ -169,24 +131,10 @@ def quickTeamOdds(team,homeOrAway):
             else:
                 odds_list.append(round(1/prob,2))
                 probs_list.append(round(prob,2))
-        for i in [2,4,6,8,10,12]:
-            prob = 1 - norm.cdf(i-1, player_avg_AST,player_AST_sd)
-            if prob < 0.1:
-                odds_list.append("0")
-                probs_list.append("0")
-            else:
-                odds_list.append(round(1/prob,2))
-                probs_list.append(round(prob,2))
-            
-            
-    #print(odds_list)
-    #print(len(odds_list))
-    
-    #print(probs_list)
-    #print(len(probs_list))
-        
+
+
     # Reshape the odds_list into a 9x24 DataFrame
-    odds_df = pd.DataFrame(np.reshape(odds_list, (9, 23)), columns=bet_kinds)
+    odds_df = pd.DataFrame(np.reshape(odds_list, (9, 2)), columns=bet_kinds)
     extended_df = pd.concat([team_df.reset_index(drop=True), odds_df], axis=1)
     print(extended_df)
     #extended_df.to_csv("bet_stamps.csv",index=False)
@@ -199,8 +147,10 @@ def gameOdds(game):
     
     away_team,home_team = game.split(' @ ')
     
-    away_df = quickTeamOdds(away_team,"away")
-    home_df = quickTeamOdds(home_team,"home")
+    dataThing = players.get_players()
+    
+    away_df = quickTeamOdds(away_team,"away",dataThing)
+    home_df = quickTeamOdds(home_team,"home",dataThing)
                             
     game_df = pd.concat([away_df, home_df], ignore_index=True)
     #print(game_df)
