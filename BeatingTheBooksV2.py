@@ -21,17 +21,25 @@ from scipy.stats import norm
 from nba_api.stats.endpoints import playergamelog
 import numpy as np
 
+# 'Team': ["Atlanta Hawks"] * 9 + ["Boston Celtics"] * 9 + ["Brooklyn Nets"] * 9 + ["Charlotte Hornets"] * 9 +
+#         ["Chicago Bulls"] * 9 + ["Cleveland Cavaliers"] * 9 + ["Dallas Mavericks"] * 9 + ["Denver Nuggets"] * 9 +
+#         ["Detroit Pistons"] * 9 + ["Golden State Warriors"] * 9 + ["Houston Rockets"] * 9 + ["Indiana Pacers"] * 9 +
+#         ["Los Angeles Clippers"] * 9 + ["Los Angeles Lakers"] * 9 + ["Memphis Grizzlies"] * 9 + ["Miami Heat"] * 9 +
+#         ["Milwaukee Bucks"] * 9 + ["Minnesota Timberwolves"] * 9 + ["New Orleans Pelicans"] * 9 +
+#         ["New York Knicks"] * 9 + ["Oklahoma City Thunder"] * 9 + ["Orlando Magic"] * 9 + ["Philadelphia 76ers"] * 9 +
+#         ["Phoenix Suns"] * 9 + ["Portland Trail Blazers"] * 9 + ["Sacramento Kings"] * 9 + ["San Antonio Spurs"] * 9 +
+#         ["Toronto Raptors"] * 9 + ["Utah Jazz"] * 9 + ["Washington Wizards"] * 9,
 
 # Your data organized into a dictionary
 starters_data = {
-    'Team': ["Atlanta Hawks"] * 9 + ["Boston Celtics"] * 9 + ["Brooklyn Nets"] * 9 + ["Charlotte Hornets"] * 9 +
-            ["Chicago Bulls"] * 9 + ["Cleveland Cavaliers"] * 9 + ["Dallas Mavericks"] * 9 + ["Denver Nuggets"] * 9 +
-            ["Detroit Pistons"] * 9 + ["Golden State Warriors"] * 9 + ["Houston Rockets"] * 9 + ["Indiana Pacers"] * 9 +
-            ["Los Angeles Clippers"] * 9 + ["Los Angeles Lakers"] * 9 + ["Memphis Grizzlies"] * 9 + ["Miami Heat"] * 9 +
-            ["Milwaukee Bucks"] * 9 + ["Minnesota Timberwolves"] * 9 + ["New Orleans Pelicans"] * 9 +
-            ["New York Knicks"] * 9 + ["Oklahoma City Thunder"] * 9 + ["Orlando Magic"] * 9 + ["Philadelphia 76ers"] * 9 +
-            ["Phoenix Suns"] * 9 + ["Portland Trail Blazers"] * 9 + ["Sacramento Kings"] * 9 + ["San Antonio Spurs"] * 9 +
-            ["Toronto Raptors"] * 9 + ["Utah Jazz"] * 9 + ["Washington Wizards"] * 9,
+    'Team': ["Hawks"] * 9 + ["Celtics"] * 9 + ["Nets"] * 9 + ["Hornets"] * 9 +
+            ["Bulls"] * 9 + ["Cavaliers"] * 9 + ["Mavericks"] * 9 + ["Nuggets"] * 9 +
+            ["Pistons"] * 9 + ["Warriors"] * 9 + ["Rockets"] * 9 + ["Pacers"] * 9 +
+            ["Clippers"] * 9 + ["Lakers"] * 9 + ["Grizzlies"] * 9 + ["Heat"] * 9 +
+            ["Bucks"] * 9 + ["Timberwolves"] * 9 + ["Pelicans"] * 9 +
+            ["Knicks"] * 9 + ["Thunder"] * 9 + ["Magic"] * 9 + ["76ers"] * 9 +
+            ["Suns"] * 9 + ["Trail Blazers"] * 9 + ["Kings"] * 9 + ["Spurs"] * 9 +
+            ["Raptors"] * 9 + ["Jazz"] * 9 + ["Wizards"] * 9,
     'Player': [
         "Jalen Johnson", "Jalen Johnson", "Clint Capela", "Trae Young", "Dyson Daniels", "Onyeka Okongwu", "Garrison Mathews", "Vit Krejci", "David Roddy",
         "Jrue Holiday", "Derrick White", "Jaylen Brown", "Jayson Tatum", "Al Horford", "Luke Kornet", "Payton Pritchard", "Xavier Tillman", "Xavier Tillman", 
@@ -47,7 +55,7 @@ starters_data = {
         "Tyrese Haliburton", "Andrew Nembhard", "Aaron Nesmith", "Pascal Siakam", "Myles Turner", "Obi Toppin", "Bennedict Mathurin", "T.J. McConnell", "Ben Sheppard",
         "Derrick Jones Jr.", "James Harden", "Norman Powell", "Terance Mann", "Ivica Zubac", "Kris Dunn", "Amir Coffey", "Kevin Porter Jr.", "Nicolas Batum",
         "D'Angelo Russell", "Austin Reaves", "Rui Hachimura", "LeBron James", "Anthony Davis", "Max Christie", "Max Christie", "Jaxson Hayes", "Gabe Vincent",
-        "Marcus Smart", "Desmond Bane", "Zach Edey", "Jaren Jackson Jr.", "Desmond Bane", "Santi Aldama", "Jake LaRavia", "Scotty Pippen Jr.", "Brandon Clarke",
+        "Marcus Smart", "Desmond Bane", "Desmond Bane", "Jaren Jackson Jr.", "Desmond Bane", "Santi Aldama", "Jake LaRavia", "Scotty Pippen Jr.", "Brandon Clarke",
         "Terry Rozier", "Tyler Herro", "Jimmy Butler", "Nikola Jovic", "Bam Adebayo", "Alec Burks", "Jaime Jaquez Jr.", "Duncan Robinson", "Thomas Bryant",
         "Damian Lillard", "Taurean Prince", "Gary Trent Jr.", "Giannis Antetokounmpo", "Brook Lopez", "Bobby Portis", "Pat Connaughton", "AJ Green", "Delon Wright",
         "Mike Conley", "Anthony Edwards", "Jaden McDaniels", "Julius Randle", "Rudy Gobert", "Donte DiVincenzo", "Naz Reid", "Nickeil Alexander-Walker", "Joe Ingles",
@@ -56,7 +64,7 @@ starters_data = {
         "Shai Gilgeous-Alexander", "Aaron Wiggins", "Jalen Williams", "Luguentz Dort", "Chet Holmgren", "Isaiah Joe", "Alex Caruso", "Cason Wallace", "Isaiah Joe",
         "Kentavious Caldwell-Pope", "Jalen Suggs", "Franz Wagner", "Paolo Banchero", "Wendell Carter Jr.", "Anthony Black", "Jett Howard", "Moritz Wagner", "Cole Anthony",
         "Tyrese Maxey", "Kyle Lowry", "Caleb Martin", "Kelly Oubre Jr.", "Andre Drummond", "Eric Gordon", "Paul George", "Joel Embiid", "Guerschon Yabusele",
-        "Devin Booker", "Devin Booker", "Tyus Jones", "Kevin Durant", "Jusuf Nurkic", "Royce O'Neale", "Damion Lee", "Monte Morris", "Mason Plumlee",
+        "Josh Okogie", "Devin Booker", "Tyus Jones", "Kevin Durant", "Jusuf Nurkic", "Royce O'Neale", "Damion Lee", "Monte Morris", "Mason Plumlee",
         "Toumani Camara", "Jerami Grant", "Anfernee Simons", "Deni Avdija", "Deandre Ayton", "Scoot Henderson", "Kris Murray", "Jabari Walker", "Jabari Walker",
         "De'Aaron Fox", "Kevin Huerter", "DeMar DeRozan", "Keegan Murray", "Domantas Sabonis", "Malik Monk", "Trey Lyles", "Alex Len", "Jordan McLaughlin",
         "Chris Paul", "Julian Champagnie", "Harrison Barnes", "Jeremy Sochan", "Victor Wembanyama", "Keldon Johnson", "Keldon Johnson", "Tre Jones", "Zach Collins",
