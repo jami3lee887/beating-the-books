@@ -43,7 +43,7 @@ starters_data = {
     'Player': [
         "Jalen Johnson", "Jalen Johnson", "Clint Capela", "Trae Young", "Dyson Daniels", "Onyeka Okongwu", "Garrison Mathews", "Vit Krejci", "David Roddy",
         "Jrue Holiday", "Derrick White", "Jaylen Brown", "Jayson Tatum", "Al Horford", "Luke Kornet", "Payton Pritchard", "Xavier Tillman", "Xavier Tillman", 
-        "Dennis Schroder", "Cam Thomas", "Ben Simmons", "Cameron Johnson", "Nic Claxton", "Nic Claxton", "Noah Clowney", "Ziaire Williams", "Jalen Wilson",
+        "Dennis Schroder", "Cam Thomas", "Ben Simmons", "Cameron Johnson", "Nic Claxton", "Dorian Finney-Smith", "Noah Clowney", "Ziaire Williams", "Jalen Wilson",
         "LaMelo Ball", "Cody Martin", "Seth Curry", "Miles Bridges", "Nick Richards", "Tre Mann", "Grant Williams", "Vasilije Micic", "Vasilije Micic",
         "Coby White", "Zach LaVine", "Nikola Vucevic", "Patrick Williams", "Josh Giddey", "Ayo Dosunmu", "Lonzo Ball", "Julian Phillips", "Jalen Smith",
         "Darius Garland", "Donovan Mitchell", "Dean Wade", "Evan Mobley", "Jarrett Allen", "Georges Niang", "Sam Merrill", "Isaac Okoro", "Ty Jerome",
@@ -59,18 +59,19 @@ starters_data = {
         "Terry Rozier", "Tyler Herro", "Jimmy Butler", "Nikola Jovic", "Bam Adebayo", "Alec Burks", "Jaime Jaquez Jr.", "Duncan Robinson", "Thomas Bryant",
         "Damian Lillard", "Taurean Prince", "Gary Trent Jr.", "Giannis Antetokounmpo", "Brook Lopez", "Bobby Portis", "Pat Connaughton", "AJ Green", "Delon Wright",
         "Mike Conley", "Anthony Edwards", "Jaden McDaniels", "Julius Randle", "Rudy Gobert", "Donte DiVincenzo", "Naz Reid", "Nickeil Alexander-Walker", "Joe Ingles",
-        "CJ McCollum", "Herbert Jones", "Daniel Theis", "Brandon Ingram", "Zion Williamson", "Jordan Hawkins", "Jordan Hawkins", "Jose Alvarado", "Javonte Green",
+        "CJ McCollum", "Herbert Jones", "Daniel Theis", "Brandon Ingram", "Zion Williamson", "Dejounte Murray", "Jordan Hawkins", "Jose Alvarado", "Javonte Green",
         "Karl-Anthony Towns", "Josh Hart", "Jalen Brunson", "OG Anunoby", "Mikal Bridges", "Cameron Payne", "Cameron Payne", "Jericho Sims", "Jericho Sims",
         "Shai Gilgeous-Alexander", "Aaron Wiggins", "Jalen Williams", "Luguentz Dort", "Chet Holmgren", "Isaiah Joe", "Alex Caruso", "Cason Wallace", "Isaiah Joe",
         "Kentavious Caldwell-Pope", "Jalen Suggs", "Franz Wagner", "Paolo Banchero", "Wendell Carter Jr.", "Anthony Black", "Jett Howard", "Moritz Wagner", "Cole Anthony",
         "Tyrese Maxey", "Kyle Lowry", "Caleb Martin", "Kelly Oubre Jr.", "Andre Drummond", "Eric Gordon", "Paul George", "Joel Embiid", "Guerschon Yabusele",
         "Josh Okogie", "Devin Booker", "Tyus Jones", "Kevin Durant", "Jusuf Nurkic", "Royce O'Neale", "Damion Lee", "Monte Morris", "Mason Plumlee",
-        "Toumani Camara", "Jerami Grant", "Anfernee Simons", "Deni Avdija", "Deandre Ayton", "Scoot Henderson", "Kris Murray", "Jabari Walker", "Jabari Walker",
-        "De'Aaron Fox", "Kevin Huerter", "DeMar DeRozan", "Keegan Murray", "Domantas Sabonis", "Malik Monk", "Trey Lyles", "Alex Len", "Jordan McLaughlin",
+        "Toumani Camara", "Jerami Grant", "Anfernee Simons", "Deni Avdija", "Deandre Ayton", "Scoot Henderson", "Kris Murray", "Shaedon Sharpe", "Jabari Walker",
+        "De'Aaron Fox", "Kevin Huerter", "DeMar DeRozan", "Keegan Murray", "Domantas Sabonis", "Malik Monk", "Trey Lyles", "Alex Len", "Malik Monk",
         "Chris Paul", "Julian Champagnie", "Harrison Barnes", "Jeremy Sochan", "Victor Wembanyama", "Keldon Johnson", "Keldon Johnson", "Tre Jones", "Zach Collins",
-        "Scottie Barnes", "Ochai Agbaji", "Gradey Dick", "Jakob Poeltl", "Davion Mitchell", "Chris Boucher", "Chris Boucher", "Chris Boucher", "Bruno Fernando",
+        "Scottie Barnes", "Ochai Agbaji", "Gradey Dick", "Jakob Poeltl", "Davion Mitchell", "'RJ Barrett", "Chris Boucher", "Chris Boucher", "Bruno Fernando",
         "Lauri Markkanen", "Walker Kessler", "Keyonte George", "Taylor Hendricks", "Collin Sexton", "Collin Sexton", "Jordan Clarkson", "John Collins", "Brice Sensabaugh",
         "Bilal Coulibaly", "Jordan Poole", "Kyle Kuzma", "Kyle Kuzma", "Kyle Kuzma", "Kyle Kuzma", "Corey Kispert", "Jonas Valanciunas", "Marvin Bagley III",
+        #rookies to add: Dalton Knecht, 
     ]
 }
 
